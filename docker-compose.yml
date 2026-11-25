@@ -1,13 +1,62 @@
 services:
+  postgres:
+    image: postgres:16.16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-vibeos}
+      POSTGRES_USER: ${POSTGRES_USER:-vibeos}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vibeos_local_dev}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -h 127.0.0.1
+      interval: 3s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
   backend:
     build: ./backend
-    ports: ["127.0.0.1:8000:8000"]
-    volumes: ["vibeos-data:/data"]
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://vibeos:vibeos_local_dev@postgres:5432/vibeos}
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import json, urllib.request; payload = json.loads(urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=3).read()); assert payload.get('status') == 'ok'
+      interval: 3s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
   frontend:
     build: ./frontend
     environment:
-      API_TARGET: http://backend:8000
-    ports: ["127.0.0.1:5173:5173"]
-    depends_on: [backend]
+      API_TARGET: ${API_TARGET:-http://backend:8000}
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-5173}:5173"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - Promise.all([fetch('http://127.0.0.1:5173/'), fetch('http://127.0.0.1:5173/api/v1/health')]).then(async ([ui, api]) => { if (!ui.ok || !api.ok) process.exit(1); const body = await api.json(); if (body.status !== 'ok') process.exit(1); }).catch(() => process.exit(1))
+      interval: 3s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
 volumes:
-  vibeos-data:
+  postgres-data:

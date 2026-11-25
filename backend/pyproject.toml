@@ -12,6 +12,8 @@ dependencies = [
     "uvicorn==0.48.0",
     "pydantic==2.13.5",
     "sqlalchemy==2.0.50",
+    "psycopg==3.3.9",
+    "psycopg-binary==3.3.9",
 ]
 
 [dependency-groups]

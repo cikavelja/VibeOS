@@ -42,3 +42,18 @@ jobs:
       - run: npm test
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e
+  docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Compose and Dockerfile contracts
+        run: python3 scripts/verify_compose.py
+      - name: Start Docker Compose stack and wait for healthchecks
+        run: docker compose up -d --build --wait --wait-timeout 180
+      - name: Verify container health and HTTP endpoints
+        run: |
+          docker compose ps
+          python3 -c "import json, urllib.request; b = json.loads(urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=10).read()); f = json.loads(urllib.request.urlopen('http://127.0.0.1:5173/api/v1/health', timeout=10).read()); assert b == {'status': 'ok', 'service': 'vibeos', 'version': '0.1.0'}, b; assert f == b, f; html = urllib.request.urlopen('http://127.0.0.1:5173/', timeout=10).read().decode(); assert '<div id=\"root\">' in html"
+      - name: Tear down Docker Compose stack
+        if: always()
+        run: docker compose down -v --remove-orphans
