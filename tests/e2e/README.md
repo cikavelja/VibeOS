@@ -1,2 +1,3 @@
 # tests/e2e
-Reserved for implementation. See docs/IMPLEMENTATION_PLAN.md. No product code exists yet.
+
+Playwright end-to-end tests covering the workspace shell (`desktop.spec.ts`) and system health screen (`health.spec.ts`). Run `npm run e2e` from `frontend/`.
