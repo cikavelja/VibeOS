@@ -1,0 +1,972 @@
+[
+  {
+    "id": "M00-T01",
+    "milestone": "M00",
+    "title": "Scaffold React and FastAPI",
+    "requirement": "REQ-00-01",
+    "acceptance": "Frontend renders a health screen and API health endpoint returns success.",
+    "dependencies": [],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M00-T02",
+    "milestone": "M00",
+    "title": "Configure reproducible dependency locks",
+    "requirement": "REQ-00-02",
+    "acceptance": "Clean checkout installs from committed lockfiles and both builds succeed.",
+    "dependencies": [
+      "M00-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M00-T03",
+    "milestone": "M00",
+    "title": "Establish Docker development environment",
+    "requirement": "REQ-00-03",
+    "acceptance": "Compose starts frontend, API and PostgreSQL; health checks pass.",
+    "dependencies": [
+      "M00-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M00-T04",
+    "milestone": "M00",
+    "title": "Create CI quality gates",
+    "requirement": "REQ-00-04",
+    "acceptance": "CI runs frontend and backend checks and fails on a deliberately failing test.",
+    "dependencies": [
+      "M00-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M00-T05",
+    "milestone": "M00",
+    "title": "Add task tracking and verification tooling",
+    "requirement": "REQ-00-05",
+    "acceptance": "Task registry validation rejects unknown dependencies and unsupported completion claims.",
+    "dependencies": [
+      "M00-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T01",
+    "milestone": "M01",
+    "title": "Desktop shell and themes",
+    "requirement": "REQ-01-01",
+    "acceptance": "Desktop occupies viewport, switches theme and wallpaper.",
+    "dependencies": [
+      "M00-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T02",
+    "milestone": "M01",
+    "title": "Built-in application registry",
+    "requirement": "REQ-01-02",
+    "acceptance": "Registered calculator and text editor launch through a typed registry.",
+    "dependencies": [
+      "M01-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T03",
+    "milestone": "M01",
+    "title": "Window state and lifecycle",
+    "requirement": "REQ-01-03",
+    "acceptance": "Open and close distinct instances without state collision.",
+    "dependencies": [
+      "M01-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T04",
+    "milestone": "M01",
+    "title": "Drag and resize windows",
+    "requirement": "REQ-01-04",
+    "acceptance": "Dragging and resizing obey viewport and minimum dimensions.",
+    "dependencies": [
+      "M01-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T05",
+    "milestone": "M01",
+    "title": "Focus and z-index",
+    "requirement": "REQ-01-05",
+    "acceptance": "Focused window comes to front without changing unrelated window state.",
+    "dependencies": [
+      "M01-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T06",
+    "milestone": "M01",
+    "title": "Minimize maximize and restore",
+    "requirement": "REQ-01-06",
+    "acceptance": "Minimize, maximize and restore preserve previous bounds.",
+    "dependencies": [
+      "M01-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T07",
+    "milestone": "M01",
+    "title": "Dock launcher and notifications",
+    "requirement": "REQ-01-07",
+    "acceptance": "Dock launches apps, shows running instances and displays notifications.",
+    "dependencies": [
+      "M01-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M01-T08",
+    "milestone": "M01",
+    "title": "Session persistence and keyboard navigation",
+    "requirement": "REQ-01-08",
+    "acceptance": "Refresh restores session; keyboard users can operate windows and launcher.",
+    "dependencies": [
+      "M01-T07"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M02-T01",
+    "milestone": "M02",
+    "title": "Database schema and migrations",
+    "requirement": "REQ-02-01",
+    "acceptance": "Migrations create schema on fresh SQLite and PostgreSQL databases.",
+    "dependencies": [
+      "M01-T08"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M02-T02",
+    "milestone": "M02",
+    "title": "Authentication and sessions",
+    "requirement": "REQ-02-02",
+    "acceptance": "Register, sign in and sign out with secure password hashing and session controls.",
+    "dependencies": [
+      "M02-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M02-T03",
+    "milestone": "M02",
+    "title": "User profiles and discovery",
+    "requirement": "REQ-02-03",
+    "acceptance": "Authenticated users can find intended recipients without exposing private profile fields.",
+    "dependencies": [
+      "M02-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M02-T04",
+    "milestone": "M02",
+    "title": "Resource ownership policy",
+    "requirement": "REQ-02-04",
+    "acceptance": "Server derives actor identity from authentication and rejects unauthorized resource operations.",
+    "dependencies": [
+      "M02-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M02-T05",
+    "milestone": "M02",
+    "title": "User data isolation",
+    "requirement": "REQ-02-05",
+    "acceptance": "Two users cannot access each other\u2019s desktop, files or application state via guessed IDs.",
+    "dependencies": [
+      "M02-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M02-T06",
+    "milestone": "M02",
+    "title": "Persistent desktop preferences",
+    "requirement": "REQ-02-06",
+    "acceptance": "Preferences and desktop state restore only for their owner.",
+    "dependencies": [
+      "M02-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M02-T07",
+    "milestone": "M02",
+    "title": "Authorization audit and regression",
+    "requirement": "REQ-02-07",
+    "acceptance": "Audit logs capture denied and allowed sensitive operations without secrets.",
+    "dependencies": [
+      "M02-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T01",
+    "milestone": "M03",
+    "title": "Manifest and shared schema",
+    "requirement": "REQ-03-01",
+    "acceptance": "Valid manifests and component trees pass Python and TypeScript contract tests; invalid input fails.",
+    "dependencies": [
+      "M02-T07"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T02",
+    "milestone": "M03",
+    "title": "Component registry and renderer",
+    "requirement": "REQ-03-02",
+    "acceptance": "Registered layout, input, table and chart components render validated props.",
+    "dependencies": [
+      "M03-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T03",
+    "milestone": "M03",
+    "title": "Typed state and bindings",
+    "requirement": "REQ-03-03",
+    "acceptance": "Bindings update the correct isolated instance and reject invalid paths.",
+    "dependencies": [
+      "M03-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T04",
+    "milestone": "M03",
+    "title": "Expression and action engine",
+    "requirement": "REQ-03-04",
+    "acceptance": "Allowlisted arithmetic, conditional and collection operations work without eval or exec.",
+    "dependencies": [
+      "M03-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T05",
+    "milestone": "M03",
+    "title": "System call dispatcher",
+    "requirement": "REQ-03-05",
+    "acceptance": "Typed calls enforce capability checks and return structured results.",
+    "dependencies": [
+      "M03-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T06",
+    "milestone": "M03",
+    "title": "Application project and version registry",
+    "requirement": "REQ-03-06",
+    "acceptance": "Projects store drafts and immutable published versions with ownership.",
+    "dependencies": [
+      "M03-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T07",
+    "milestone": "M03",
+    "title": "Installations and instance persistence",
+    "requirement": "REQ-03-07",
+    "acceptance": "Each installation has independent state and survives refresh.",
+    "dependencies": [
+      "M03-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T08",
+    "milestone": "M03",
+    "title": "Preview and application lifecycle",
+    "requirement": "REQ-03-08",
+    "acceptance": "Preview, install, launch and uninstall work without rebuilding the shell.",
+    "dependencies": [
+      "M03-T07"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M03-T09",
+    "milestone": "M03",
+    "title": "Runtime integration and rollback",
+    "requirement": "REQ-03-09",
+    "acceptance": "JSON calculator works end to end; version rollback preserves compatible state.",
+    "dependencies": [
+      "M03-T08"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T01",
+    "milestone": "M04",
+    "title": "Vibe Studio layout",
+    "requirement": "REQ-04-01",
+    "acceptance": "Studio opens with toolbox, canvas, inspector, tree and logs.",
+    "dependencies": [
+      "M03-T09"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T02",
+    "milestone": "M04",
+    "title": "Component tree and drag-drop",
+    "requirement": "REQ-04-02",
+    "acceptance": "Nested components can be inserted, reordered, duplicated and removed.",
+    "dependencies": [
+      "M04-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T03",
+    "milestone": "M04",
+    "title": "Properties inspector",
+    "requirement": "REQ-04-03",
+    "acceptance": "Editing supported properties immediately updates the canvas.",
+    "dependencies": [
+      "M04-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T04",
+    "milestone": "M04",
+    "title": "Undo redo and selection",
+    "requirement": "REQ-04-04",
+    "acceptance": "Undo and redo restore component edits without corrupting IDs.",
+    "dependencies": [
+      "M04-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T05",
+    "milestone": "M04",
+    "title": "State schema editor",
+    "requirement": "REQ-04-05",
+    "acceptance": "Designer defines typed initial state and bindings.",
+    "dependencies": [
+      "M04-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T06",
+    "milestone": "M04",
+    "title": "Visual event workflow editor",
+    "requirement": "REQ-04-06",
+    "acceptance": "Button workflow can set state, branch and append items using allowlisted actions.",
+    "dependencies": [
+      "M04-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T07",
+    "milestone": "M04",
+    "title": "JSON definition editor",
+    "requirement": "REQ-04-07",
+    "acceptance": "JSON edits and visual edits synchronize for declarative applications.",
+    "dependencies": [
+      "M04-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T08",
+    "milestone": "M04",
+    "title": "Live preview and validation",
+    "requirement": "REQ-04-08",
+    "acceptance": "Invalid definitions display errors and cannot be installed.",
+    "dependencies": [
+      "M04-T07"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T09",
+    "milestone": "M04",
+    "title": "Draft save and publishing preparation",
+    "requirement": "REQ-04-09",
+    "acceptance": "Draft saves and reloads; release preview lists permissions.",
+    "dependencies": [
+      "M04-T08"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M04-T10",
+    "milestone": "M04",
+    "title": "Designer end-to-end workflow",
+    "requirement": "REQ-04-10",
+    "acceptance": "User designs and installs an interactive expense tracker without source coding.",
+    "dependencies": [
+      "M04-T09"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T01",
+    "milestone": "M05",
+    "title": "Provider abstraction and mock",
+    "requirement": "REQ-05-01",
+    "acceptance": "Deterministic mock and configured LiteLLM provider use the same typed interface.",
+    "dependencies": [
+      "M04-T10"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T02",
+    "milestone": "M05",
+    "title": "Secure provider settings",
+    "requirement": "REQ-05-02",
+    "acceptance": "Provider secrets stay server-side and are redacted from responses and logs.",
+    "dependencies": [
+      "M05-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T03",
+    "milestone": "M05",
+    "title": "Agent context and LangGraph routing",
+    "requirement": "REQ-05-03",
+    "acceptance": "Graph routes bounded requests using only authorized context.",
+    "dependencies": [
+      "M05-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T04",
+    "milestone": "M05",
+    "title": "Application generation",
+    "requirement": "REQ-05-04",
+    "acceptance": "Natural language generates a valid executable declarative application.",
+    "dependencies": [
+      "M05-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T05",
+    "milestone": "M05",
+    "title": "Application modification and repair",
+    "requirement": "REQ-05-05",
+    "acceptance": "Targeted modification creates a new version and preserves compatible user data.",
+    "dependencies": [
+      "M05-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T06",
+    "milestone": "M05",
+    "title": "Streaming and cancellation",
+    "requirement": "REQ-05-06",
+    "acceptance": "SSE and WebSocket events expose progress; cancellation and timeouts stop execution.",
+    "dependencies": [
+      "M05-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T07",
+    "milestone": "M05",
+    "title": "Agent tools and permission confirmation",
+    "requirement": "REQ-05-07",
+    "acceptance": "Tool calls enforce permissions and confirmation for sensitive actions.",
+    "dependencies": [
+      "M05-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M05-T08",
+    "milestone": "M05",
+    "title": "AI end-to-end integration",
+    "requirement": "REQ-05-08",
+    "acceptance": "Mock-backed scenario generates, installs and modifies an app; real-provider smoke test is separately documented.",
+    "dependencies": [
+      "M05-T07"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M06-T01",
+    "milestone": "M06",
+    "title": "Virtual paths and metadata",
+    "requirement": "REQ-06-01",
+    "acceptance": "Virtual paths resolve within owner namespace; traversal is rejected.",
+    "dependencies": [
+      "M05-T08"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M06-T02",
+    "milestone": "M06",
+    "title": "Storage adapter and CRUD",
+    "requirement": "REQ-06-02",
+    "acceptance": "Create, read, move, copy, rename, trash and restore work with owner checks.",
+    "dependencies": [
+      "M06-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M06-T03",
+    "milestone": "M06",
+    "title": "Upload download and quotas",
+    "requirement": "REQ-06-03",
+    "acceptance": "Upload and download enforce size, type policy and quotas.",
+    "dependencies": [
+      "M06-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M06-T04",
+    "milestone": "M06",
+    "title": "File explorer and text editor",
+    "requirement": "REQ-06-04",
+    "acceptance": "Explorer and editor browse and save authorized files.",
+    "dependencies": [
+      "M06-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M06-T05",
+    "milestone": "M06",
+    "title": "Virtual terminal and search",
+    "requirement": "REQ-06-05",
+    "acceptance": "Allowlisted virtual commands and search work without host shell execution.",
+    "dependencies": [
+      "M06-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M06-T06",
+    "milestone": "M06",
+    "title": "File security and integration",
+    "requirement": "REQ-06-06",
+    "acceptance": "Cross-user access, traversal and unsafe upload tests fail safely.",
+    "dependencies": [
+      "M06-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M07-T01",
+    "milestone": "M07",
+    "title": "Portable package format",
+    "requirement": "REQ-07-01",
+    "acceptance": "Versioned .vibeapp archive contains manifest, definition and approved assets with integrity metadata.",
+    "dependencies": [
+      "M06-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M07-T02",
+    "milestone": "M07",
+    "title": "Export and import validation",
+    "requirement": "REQ-07-02",
+    "acceptance": "Export omits private data and secrets; import rejects traversal, oversized archives and invalid schema.",
+    "dependencies": [
+      "M07-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M07-T03",
+    "milestone": "M07",
+    "title": "Direct share invitations",
+    "requirement": "REQ-07-03",
+    "acceptance": "Sender selects recipient and immutable version; recipient sees pending invitation.",
+    "dependencies": [
+      "M07-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M07-T04",
+    "milestone": "M07",
+    "title": "Recipient acceptance and installation",
+    "requirement": "REQ-07-04",
+    "acceptance": "Recipient reviews permissions and accepts or rejects; repeated acceptance is idempotent.",
+    "dependencies": [
+      "M07-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M07-T05",
+    "milestone": "M07",
+    "title": "Copy and fork semantics",
+    "requirement": "REQ-07-05",
+    "acceptance": "Copy and fork create independent owned projects with provenance and license checks.",
+    "dependencies": [
+      "M07-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M07-T06",
+    "milestone": "M07",
+    "title": "Version updates and state migration",
+    "requirement": "REQ-07-06",
+    "acceptance": "Recipient can update pinned installation without losing compatible state; failed migration rolls back.",
+    "dependencies": [
+      "M07-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M07-T07",
+    "milestone": "M07",
+    "title": "Ownership transfer and audit",
+    "requirement": "REQ-07-07",
+    "acceptance": "Both parties confirm ownership transfer; history is retained and instance data is not transferred.",
+    "dependencies": [
+      "M07-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M07-T08",
+    "milestone": "M07",
+    "title": "Two-user sharing end-to-end",
+    "requirement": "REQ-07-08",
+    "acceptance": "User A shares expense tracker; User B installs and uses independent records, including after refresh.",
+    "dependencies": [
+      "M07-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "MVP"
+  },
+  {
+    "id": "M08-T01",
+    "milestone": "M08",
+    "title": "Publication and visibility",
+    "requirement": "REQ-08-01",
+    "acceptance": "Private, shared, unlisted and public visibility enforced server-side.",
+    "dependencies": [
+      "M07-T08"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M08-T02",
+    "milestone": "M08",
+    "title": "Catalog and search",
+    "requirement": "REQ-08-02",
+    "acceptance": "Catalog search and category filters return only visible published versions.",
+    "dependencies": [
+      "M08-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M08-T03",
+    "milestone": "M08",
+    "title": "Application detail and permissions",
+    "requirement": "REQ-08-03",
+    "acceptance": "Details show author, version, license, screenshots and requested permissions.",
+    "dependencies": [
+      "M08-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M08-T04",
+    "milestone": "M08",
+    "title": "Marketplace install",
+    "requirement": "REQ-08-04",
+    "acceptance": "Marketplace installation reuses validated recipient install flow.",
+    "dependencies": [
+      "M08-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M08-T05",
+    "milestone": "M08",
+    "title": "Reviews and ratings",
+    "requirement": "REQ-08-05",
+    "acceptance": "Authorized users submit reviews and ratings with duplicate controls.",
+    "dependencies": [
+      "M08-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M08-T06",
+    "milestone": "M08",
+    "title": "Updates and notifications",
+    "requirement": "REQ-08-06",
+    "acceptance": "Subscribers see available updates and can approve installation.",
+    "dependencies": [
+      "M08-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M08-T07",
+    "milestone": "M08",
+    "title": "Reporting and revocation",
+    "requirement": "REQ-08-07",
+    "acceptance": "Reports and administrative revocation are audited; revoked versions cannot be newly installed.",
+    "dependencies": [
+      "M08-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M09-T01",
+    "milestone": "M09",
+    "title": "Sandbox origin and iframe policy",
+    "requirement": "REQ-09-01",
+    "acceptance": "Executable apps use isolated origin and restrictive CSP; cannot read host DOM or credentials.",
+    "dependencies": [
+      "M08-T07"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M09-T02",
+    "milestone": "M09",
+    "title": "Validated runtime message bridge",
+    "requirement": "REQ-09-02",
+    "acceptance": "Per-instance bridge validates origin/channel, schema and capability for every call.",
+    "dependencies": [
+      "M09-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M09-T03",
+    "milestone": "M09",
+    "title": "Code authoring and preview",
+    "requirement": "REQ-09-03",
+    "acceptance": "Developer Studio previews sandboxed HTML/JS and optionally compiled React without host execution.",
+    "dependencies": [
+      "M09-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M09-T04",
+    "milestone": "M09",
+    "title": "Inter-application communication",
+    "requirement": "REQ-09-04",
+    "acceptance": "Authorized IPC channels isolate users and applications.",
+    "dependencies": [
+      "M09-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M09-T05",
+    "milestone": "M09",
+    "title": "MCP client and discovery",
+    "requirement": "REQ-09-05",
+    "acceptance": "Approved MCP connections discover tools with timeout and safe endpoint policy.",
+    "dependencies": [
+      "M09-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M09-T06",
+    "milestone": "M09",
+    "title": "MCP tool authorization and optional server",
+    "requirement": "REQ-09-06",
+    "acceptance": "MCP invocations require capability checks; optional server exposes only approved operations.",
+    "dependencies": [
+      "M09-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M09-T07",
+    "milestone": "M09",
+    "title": "Collaborative editing and package signing",
+    "requirement": "REQ-09-07",
+    "acceptance": "Collaborator roles and optimistic revision checks prevent unauthorized edits; signing verifies publisher and package integrity.",
+    "dependencies": [
+      "M09-T06"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M10-T01",
+    "milestone": "M10",
+    "title": "Full regression and accessibility",
+    "requirement": "REQ-10-01",
+    "acceptance": "All mandatory regressions pass and keyboard/accessibility scenarios are recorded.",
+    "dependencies": [
+      "M09-T07"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M10-T02",
+    "milestone": "M10",
+    "title": "Security and threat review",
+    "requirement": "REQ-10-02",
+    "acceptance": "Threat model tests cover authorization, sandboxing, injection, secrets and package attacks.",
+    "dependencies": [
+      "M10-T01"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M10-T03",
+    "milestone": "M10",
+    "title": "Performance and resource limits",
+    "requirement": "REQ-10-03",
+    "acceptance": "Documented budgets are tested for large trees, files, concurrent sessions and agent loops.",
+    "dependencies": [
+      "M10-T02"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M10-T04",
+    "milestone": "M10",
+    "title": "Deployment and observability",
+    "requirement": "REQ-10-04",
+    "acceptance": "Deployment uses secure configuration, health checks and redacted logs.",
+    "dependencies": [
+      "M10-T03"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M10-T05",
+    "milestone": "M10",
+    "title": "Backup restore and migrations",
+    "requirement": "REQ-10-05",
+    "acceptance": "Backup restore and upgrade rehearsals preserve user state.",
+    "dependencies": [
+      "M10-T04"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  },
+  {
+    "id": "M10-T06",
+    "milestone": "M10",
+    "title": "Release audit and documentation",
+    "requirement": "REQ-10-06",
+    "acceptance": "All mandatory requirements have evidence; installation and operations documentation is reproducible.",
+    "dependencies": [
+      "M10-T05"
+    ],
+    "status": "NOT_STARTED",
+    "priority": "POST_MVP"
+  }
+]

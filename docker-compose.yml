@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: ./backend
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: ["vibeos-data:/data"]
+  frontend:
+    build: ./frontend
+    environment:
+      API_TARGET: http://backend:8000
+    ports: ["127.0.0.1:5173:5173"]
+    depends_on: [backend]
+volumes:
+  vibeos-data:

@@ -1,0 +1,2 @@
+# ADR 0001 — baseline (proposed)
+Use React/TypeScript and Python/FastAPI modular monolith. Declarative runtime first, sandboxed code later. Separate project, release, installation and state. User-to-user sharing is MVP; marketplace and collaboration follow. SQLite local / PostgreSQL production. LangGraph and LiteLLM are proposed choices, not verified dependencies. Review during M00; changes require explicit ADR.

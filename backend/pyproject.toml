@@ -1,0 +1,10 @@
+[project]
+name = "vibeos-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["fastapi==0.128.2", "uvicorn==0.48.0", "pydantic==2.13.5", "sqlalchemy==2.0.50"]
+[dependency-groups]
+dev = ["httpx==0.28.1", "pytest==8.4.2", "ruff", "mypy"]
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

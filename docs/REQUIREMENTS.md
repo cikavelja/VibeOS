@@ -1,0 +1,87 @@
+# VibeOS requirements
+
+React/TypeScript browser desktop with Python/FastAPI backend. Users create functional applications visually or with AI, install, share and independently operate them.
+
+- **REQ-00-01 (MVP)** — Scaffold React and FastAPI: Frontend renders a health screen and API health endpoint returns success.
+- **REQ-00-02 (MVP)** — Configure reproducible dependency locks: Clean checkout installs from committed lockfiles and both builds succeed.
+- **REQ-00-03 (MVP)** — Establish Docker development environment: Compose starts frontend, API and PostgreSQL; health checks pass.
+- **REQ-00-04 (MVP)** — Create CI quality gates: CI runs frontend and backend checks and fails on a deliberately failing test.
+- **REQ-00-05 (MVP)** — Add task tracking and verification tooling: Task registry validation rejects unknown dependencies and unsupported completion claims.
+- **REQ-01-01 (MVP)** — Desktop shell and themes: Desktop occupies viewport, switches theme and wallpaper.
+- **REQ-01-02 (MVP)** — Built-in application registry: Registered calculator and text editor launch through a typed registry.
+- **REQ-01-03 (MVP)** — Window state and lifecycle: Open and close distinct instances without state collision.
+- **REQ-01-04 (MVP)** — Drag and resize windows: Dragging and resizing obey viewport and minimum dimensions.
+- **REQ-01-05 (MVP)** — Focus and z-index: Focused window comes to front without changing unrelated window state.
+- **REQ-01-06 (MVP)** — Minimize maximize and restore: Minimize, maximize and restore preserve previous bounds.
+- **REQ-01-07 (MVP)** — Dock launcher and notifications: Dock launches apps, shows running instances and displays notifications.
+- **REQ-01-08 (MVP)** — Session persistence and keyboard navigation: Refresh restores session; keyboard users can operate windows and launcher.
+- **REQ-02-01 (MVP)** — Database schema and migrations: Migrations create schema on fresh SQLite and PostgreSQL databases.
+- **REQ-02-02 (MVP)** — Authentication and sessions: Register, sign in and sign out with secure password hashing and session controls.
+- **REQ-02-03 (MVP)** — User profiles and discovery: Authenticated users can find intended recipients without exposing private profile fields.
+- **REQ-02-04 (MVP)** — Resource ownership policy: Server derives actor identity from authentication and rejects unauthorized resource operations.
+- **REQ-02-05 (MVP)** — User data isolation: Two users cannot access each other’s desktop, files or application state via guessed IDs.
+- **REQ-02-06 (MVP)** — Persistent desktop preferences: Preferences and desktop state restore only for their owner.
+- **REQ-02-07 (MVP)** — Authorization audit and regression: Audit logs capture denied and allowed sensitive operations without secrets.
+- **REQ-03-01 (MVP)** — Manifest and shared schema: Valid manifests and component trees pass Python and TypeScript contract tests; invalid input fails.
+- **REQ-03-02 (MVP)** — Component registry and renderer: Registered layout, input, table and chart components render validated props.
+- **REQ-03-03 (MVP)** — Typed state and bindings: Bindings update the correct isolated instance and reject invalid paths.
+- **REQ-03-04 (MVP)** — Expression and action engine: Allowlisted arithmetic, conditional and collection operations work without eval or exec.
+- **REQ-03-05 (MVP)** — System call dispatcher: Typed calls enforce capability checks and return structured results.
+- **REQ-03-06 (MVP)** — Application project and version registry: Projects store drafts and immutable published versions with ownership.
+- **REQ-03-07 (MVP)** — Installations and instance persistence: Each installation has independent state and survives refresh.
+- **REQ-03-08 (MVP)** — Preview and application lifecycle: Preview, install, launch and uninstall work without rebuilding the shell.
+- **REQ-03-09 (MVP)** — Runtime integration and rollback: JSON calculator works end to end; version rollback preserves compatible state.
+- **REQ-04-01 (MVP)** — Vibe Studio layout: Studio opens with toolbox, canvas, inspector, tree and logs.
+- **REQ-04-02 (MVP)** — Component tree and drag-drop: Nested components can be inserted, reordered, duplicated and removed.
+- **REQ-04-03 (MVP)** — Properties inspector: Editing supported properties immediately updates the canvas.
+- **REQ-04-04 (MVP)** — Undo redo and selection: Undo and redo restore component edits without corrupting IDs.
+- **REQ-04-05 (MVP)** — State schema editor: Designer defines typed initial state and bindings.
+- **REQ-04-06 (MVP)** — Visual event workflow editor: Button workflow can set state, branch and append items using allowlisted actions.
+- **REQ-04-07 (MVP)** — JSON definition editor: JSON edits and visual edits synchronize for declarative applications.
+- **REQ-04-08 (MVP)** — Live preview and validation: Invalid definitions display errors and cannot be installed.
+- **REQ-04-09 (MVP)** — Draft save and publishing preparation: Draft saves and reloads; release preview lists permissions.
+- **REQ-04-10 (MVP)** — Designer end-to-end workflow: User designs and installs an interactive expense tracker without source coding.
+- **REQ-05-01 (MVP)** — Provider abstraction and mock: Deterministic mock and configured LiteLLM provider use the same typed interface.
+- **REQ-05-02 (MVP)** — Secure provider settings: Provider secrets stay server-side and are redacted from responses and logs.
+- **REQ-05-03 (MVP)** — Agent context and LangGraph routing: Graph routes bounded requests using only authorized context.
+- **REQ-05-04 (MVP)** — Application generation: Natural language generates a valid executable declarative application.
+- **REQ-05-05 (MVP)** — Application modification and repair: Targeted modification creates a new version and preserves compatible user data.
+- **REQ-05-06 (MVP)** — Streaming and cancellation: SSE and WebSocket events expose progress; cancellation and timeouts stop execution.
+- **REQ-05-07 (MVP)** — Agent tools and permission confirmation: Tool calls enforce permissions and confirmation for sensitive actions.
+- **REQ-05-08 (MVP)** — AI end-to-end integration: Mock-backed scenario generates, installs and modifies an app; real-provider smoke test is separately documented.
+- **REQ-06-01 (MVP)** — Virtual paths and metadata: Virtual paths resolve within owner namespace; traversal is rejected.
+- **REQ-06-02 (MVP)** — Storage adapter and CRUD: Create, read, move, copy, rename, trash and restore work with owner checks.
+- **REQ-06-03 (MVP)** — Upload download and quotas: Upload and download enforce size, type policy and quotas.
+- **REQ-06-04 (MVP)** — File explorer and text editor: Explorer and editor browse and save authorized files.
+- **REQ-06-05 (MVP)** — Virtual terminal and search: Allowlisted virtual commands and search work without host shell execution.
+- **REQ-06-06 (MVP)** — File security and integration: Cross-user access, traversal and unsafe upload tests fail safely.
+- **REQ-07-01 (MVP)** — Portable package format: Versioned .vibeapp archive contains manifest, definition and approved assets with integrity metadata.
+- **REQ-07-02 (MVP)** — Export and import validation: Export omits private data and secrets; import rejects traversal, oversized archives and invalid schema.
+- **REQ-07-03 (MVP)** — Direct share invitations: Sender selects recipient and immutable version; recipient sees pending invitation.
+- **REQ-07-04 (MVP)** — Recipient acceptance and installation: Recipient reviews permissions and accepts or rejects; repeated acceptance is idempotent.
+- **REQ-07-05 (MVP)** — Copy and fork semantics: Copy and fork create independent owned projects with provenance and license checks.
+- **REQ-07-06 (MVP)** — Version updates and state migration: Recipient can update pinned installation without losing compatible state; failed migration rolls back.
+- **REQ-07-07 (POST_MVP)** — Ownership transfer and audit: Both parties confirm ownership transfer; history is retained and instance data is not transferred.
+- **REQ-07-08 (MVP)** — Two-user sharing end-to-end: User A shares expense tracker; User B installs and uses independent records, including after refresh.
+- **REQ-08-01 (POST_MVP)** — Publication and visibility: Private, shared, unlisted and public visibility enforced server-side.
+- **REQ-08-02 (POST_MVP)** — Catalog and search: Catalog search and category filters return only visible published versions.
+- **REQ-08-03 (POST_MVP)** — Application detail and permissions: Details show author, version, license, screenshots and requested permissions.
+- **REQ-08-04 (POST_MVP)** — Marketplace install: Marketplace installation reuses validated recipient install flow.
+- **REQ-08-05 (POST_MVP)** — Reviews and ratings: Authorized users submit reviews and ratings with duplicate controls.
+- **REQ-08-06 (POST_MVP)** — Updates and notifications: Subscribers see available updates and can approve installation.
+- **REQ-08-07 (POST_MVP)** — Reporting and revocation: Reports and administrative revocation are audited; revoked versions cannot be newly installed.
+- **REQ-09-01 (POST_MVP)** — Sandbox origin and iframe policy: Executable apps use isolated origin and restrictive CSP; cannot read host DOM or credentials.
+- **REQ-09-02 (POST_MVP)** — Validated runtime message bridge: Per-instance bridge validates origin/channel, schema and capability for every call.
+- **REQ-09-03 (POST_MVP)** — Code authoring and preview: Developer Studio previews sandboxed HTML/JS and optionally compiled React without host execution.
+- **REQ-09-04 (POST_MVP)** — Inter-application communication: Authorized IPC channels isolate users and applications.
+- **REQ-09-05 (POST_MVP)** — MCP client and discovery: Approved MCP connections discover tools with timeout and safe endpoint policy.
+- **REQ-09-06 (POST_MVP)** — MCP tool authorization and optional server: MCP invocations require capability checks; optional server exposes only approved operations.
+- **REQ-09-07 (POST_MVP)** — Collaborative editing and package signing: Collaborator roles and optimistic revision checks prevent unauthorized edits; signing verifies publisher and package integrity.
+- **REQ-10-01 (POST_MVP)** — Full regression and accessibility: All mandatory regressions pass and keyboard/accessibility scenarios are recorded.
+- **REQ-10-02 (POST_MVP)** — Security and threat review: Threat model tests cover authorization, sandboxing, injection, secrets and package attacks.
+- **REQ-10-03 (POST_MVP)** — Performance and resource limits: Documented budgets are tested for large trees, files, concurrent sessions and agent loops.
+- **REQ-10-04 (POST_MVP)** — Deployment and observability: Deployment uses secure configuration, health checks and redacted logs.
+- **REQ-10-05 (POST_MVP)** — Backup restore and migrations: Backup restore and upgrade rehearsals preserve user state.
+- **REQ-10-06 (POST_MVP)** — Release audit and documentation: All mandatory requirements have evidence; installation and operations documentation is reproducible.
+
+Cross-cutting requirements: accessibility, provider independence (OpenAI, Azure/Foundry, Anthropic, Gemini, Ollama), persistence, secure isolation, auditability, reproducible builds, bounded agents, and portable applications. See ARCHITECTURE.md and SECURITY.md. No actual OS kernel or unrestricted server code execution.
