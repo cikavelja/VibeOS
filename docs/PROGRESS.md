@@ -2,7 +2,7 @@
 
 Verified: 0/81
 
-Eligible tasks: M00-T01
+Eligible tasks: None
 
 | Milestone | Total | Verified |
 |---|---:|---:|
