@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Studio } from './designer/Studio';
+import { DesktopShell } from './desktop/DesktopShell';
 import { HealthScreen } from './health/HealthScreen';
 import { Renderer } from './runtime/Renderer';
 import { request } from './services/api';
@@ -8,10 +9,13 @@ import { checkApiHealth } from './services/health';
 import './style.css';
 import type { Definition, HealthState, Installation, Project, Share, Values } from './types';
 
+const CANONICAL_AUTH_USERNAME_RE = /^[a-z0-9_]{3,40}$/;
+
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
+  const [activeUsername, setActiveUsername] = useState<string | null>(null);
   const [recipient, setRecipient] = useState('');
   const [projects, setProjects] = useState<Project[]>([]);
   const [installs, setInstalls] = useState<Installation[]>([]);
@@ -69,9 +73,21 @@ function App() {
   async function login(register: boolean) {
     await run(async () => {
       if (register) await request('/auth/register', '', 'POST', { username, password });
-      const r = await request<{ token: string }>('/auth/login', '', 'POST', { username, password });
+      const r = await request<{ token: unknown; username?: unknown }>('/auth/login', '', 'POST', {
+        username,
+        password,
+      });
+      if (
+        typeof r.token !== 'string' ||
+        !r.token ||
+        typeof r.username !== 'string' ||
+        !CANONICAL_AUTH_USERNAME_RE.test(r.username)
+      ) {
+        throw new Error('Invalid authentication response payload');
+      }
       await refresh(r.token);
       setToken(r.token);
+      setActiveUsername(r.username);
       setPassword('');
     });
   }
@@ -90,44 +106,29 @@ function App() {
     setInstalls((old) => old.map((i) => (i.id === selected ? { ...i, state: values } : i)));
   }
 
-  const headerHealthText =
-    health.kind === 'healthy'
-      ? 'API: Healthy'
-      : health.kind === 'checking'
-        ? 'API: Checking…'
-        : 'API: Unavailable';
+  const handleSignOut = token
+    ? () =>
+        void run(async () => {
+          await request('/auth/logout', token, 'POST');
+          setToken('');
+          setActiveUsername(null);
+          setProjects([]);
+          setInstalls([]);
+          setShares([]);
+          setSelected('');
+          setRecipient('');
+          setPage('Studio');
+        })
+    : undefined;
 
   return (
-    <main>
-      <header>
-        <strong>VibeOS</strong>
-        <span>Development preview</span>
-        <span className={`health-pill health-${health.kind}`}>{headerHealthText}</span>
-        {token && (
-          <button
-            disabled={busy}
-            onClick={() =>
-              void run(async () => {
-                await request('/auth/logout', token, 'POST');
-                setToken('');
-                setProjects([]);
-                setInstalls([]);
-                setShares([]);
-                setSelected('');
-                setRecipient('');
-                setPage('Studio');
-              })
-            }
-          >
-            Sign out
-          </button>
-        )}
-      </header>
-      {message && (
-        <p className="message" role="status">
-          {message}
-        </p>
-      )}
+    <DesktopShell
+      activeUsername={activeUsername}
+      healthState={health}
+      statusMessage={message}
+      onSignOut={handleSignOut}
+      signOutDisabled={busy}
+    >
       {!token ? (
         <>
           <HealthScreen state={health} busy={healthBusy} onRefresh={() => refreshHealth()} />
@@ -258,7 +259,7 @@ function App() {
           </article>
         </>
       )}
-    </main>
+    </DesktopShell>
   );
 }
 
