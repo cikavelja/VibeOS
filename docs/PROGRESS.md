@@ -1,12 +1,12 @@
 # Progress (generated)
 
-Verified: 0/81
+Verified: 1/81
 
-Eligible tasks: None
+Eligible tasks: M00-T02
 
 | Milestone | Total | Verified |
 |---|---:|---:|
-| M00 | 5 | 0 |
+| M00 | 5 | 1 |
 | M01 | 8 | 0 |
 | M02 | 7 | 0 |
 | M03 | 9 | 0 |

@@ -6,7 +6,7 @@
     "requirement": "REQ-00-01",
     "acceptance": "Frontend renders a health screen and API health endpoint returns success.",
     "dependencies": [],
-    "status": "IMPLEMENTED",
+    "status": "VERIFIED",
     "priority": "MVP"
   },
   {

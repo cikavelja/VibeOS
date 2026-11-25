@@ -2,7 +2,7 @@
 
 | Requirement | Task | Priority | Status |
 |---|---|---|---|
-| REQ-00-01 | M00-T01 | MVP | IMPLEMENTED |
+| REQ-00-01 | M00-T01 | MVP | VERIFIED |
 | REQ-00-02 | M00-T02 | MVP | NOT_STARTED |
 | REQ-00-03 | M00-T03 | MVP | NOT_STARTED |
 | REQ-00-04 | M00-T04 | MVP | NOT_STARTED |
