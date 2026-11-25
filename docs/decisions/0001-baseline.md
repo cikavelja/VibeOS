@@ -1,2 +1,4 @@
-# ADR 0001 — baseline (proposed)
-Use React/TypeScript and Python/FastAPI modular monolith. Declarative runtime first, sandboxed code later. Separate project, release, installation and state. User-to-user sharing is MVP; marketplace and collaboration follow. SQLite local / PostgreSQL production. LangGraph and LiteLLM are proposed choices, not verified dependencies. Review during M00; changes require explicit ADR.
+# ADR 0001 — baseline (accepted)
+Use React/TypeScript and Python/FastAPI modular monolith. Declarative runtime first, sandboxed code later. Separate project, release, installation and state. User-to-user sharing is MVP; marketplace and collaboration follow. SQLite local / PostgreSQL production.
+
+Reproducible dependency locks are enforced via `backend/pyproject.toml` + `backend/uv.lock` (`uv sync --locked`, Python `>=3.12`) and `frontend/package.json` + `frontend/package-lock.json` (`npm ci`, lockfile v3 with HTTPS SRI integrity hashes), verified by `scripts/verify_locks.py`. To avoid speculative unused packages, milestone-specific dependencies (such as Zustand, Zod, async SQLAlchemy/Alembic, LiteLLM, LangGraph, and MCP) are added and locked in the tasks that introduce their functionality; any baseline stack divergence requires an explicit ADR.
