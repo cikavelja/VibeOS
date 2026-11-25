@@ -28,7 +28,7 @@ Register Alice and Bob (passwords at least 10 characters). As Alice, open Studio
 
 ## Verification
 
-`python scripts/progress.py --write`, `python scripts/verify_locks.py`, and `python scripts/verify_compose.py` from root; `python -m unittest discover -s scripts/tests` from root; `uv sync --locked`, `uv build`, `uv run ruff check .`, `uv run ruff format --check .`, `uv run mypy app`, and `uv run pytest -q` from `backend`; `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm test`, `npx playwright install chromium`, and `npm run e2e` from `frontend`. See docs/verification/STARTER_PREVIEW.md for initial packaging notes.
+`python scripts/progress.py --write`, `python scripts/verify_locks.py`, `python scripts/verify_compose.py`, and `python scripts/verify_ci.py` from root; `python -m unittest discover -s scripts/tests` from root; `uv sync --locked`, `uv build`, `uv run ruff check .`, `uv run ruff format --check .`, `uv run mypy --strict app tests`, and `uv run pytest -q` from `backend`; `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm run test`, `npx playwright install chromium`, and `npm run e2e` from `frontend`. See docs/verification/STARTER_PREVIEW.md for initial packaging notes.
 
 ## Scope
 

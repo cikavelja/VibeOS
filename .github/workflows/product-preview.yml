@@ -1,8 +1,17 @@
 name: Product preview checks
 on: [push, pull_request]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}"
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   backend:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: backend
@@ -16,10 +25,11 @@ jobs:
       - run: uv build
       - run: uv run ruff check .
       - run: uv run ruff format --check .
-      - run: uv run mypy app tests
+      - run: uv run mypy --strict app tests
       - run: uv run pytest -q
   frontend:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: frontend
@@ -39,11 +49,12 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
-      - run: npm test
+      - run: npm run test
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e
   docker-compose:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - name: Validate Compose and Dockerfile contracts
