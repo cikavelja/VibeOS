@@ -12,18 +12,15 @@ Backend:
 
 ```sh
 cd backend
-python -m venv .venv
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-# Linux/macOS: source .venv/bin/activate
-python -m pip install -r requirements.txt
-python -m uvicorn app.main:app --reload
+uv sync --locked
+uv run uvicorn app.main:app --reload
 ```
 
 Frontend:
 
 ```sh
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
@@ -31,8 +28,8 @@ Register Alice and Bob (passwords at least 10 characters). As Alice, open Studio
 
 ## Verification
 
-`python scripts/progress.py --write` from root; `python -m pytest scripts/tests -q` from root; `python -m pytest -q` from backend; `npm run build`, `npm test`, `npx playwright install chromium`, `npm run e2e` from frontend. See docs/verification/STARTER_PREVIEW.md for actual packaging checks. No planned task is automatically marked VERIFIED.
+`python scripts/progress.py --write` and `python scripts/verify_locks.py` from root; `python -m unittest discover -s scripts/tests` from root; `uv sync --locked`, `uv build`, `uv run ruff check .`, `uv run ruff format --check .`, `uv run mypy app`, and `uv run pytest -q` from `backend`; `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm test`, `npx playwright install chromium`, and `npm run e2e` from `frontend`. See docs/verification/STARTER_PREVIEW.md for initial packaging notes.
 
 ## Scope
 
-Development preview, not production-ready VibeOS. Real AI generation, full window manager, drag-and-drop designer, versioning, portable packages, marketplace, async persistence and MCP remain planned. No dependency lockfiles are claimed; generate and commit them in M00 after resolving dependencies. All planning task status remains NOT_STARTED until independently reviewed against the original criteria. Do not expose publicly.
+Development preview, not production-ready VibeOS. Real AI generation, full window manager, drag-and-drop designer, versioning, portable packages, marketplace, async persistence and MCP remain planned. Reproducible dependency lockfiles (`backend/uv.lock` and `frontend/package-lock.json`) are committed and verified. Task statuses advance only after independent verification against the acceptance criteria. Do not expose publicly.
