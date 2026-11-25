@@ -4,7 +4,7 @@ React + TypeScript and Python/FastAPI. Includes the original 81-task planning ba
 
 ## Quick start (Docker)
 
-`docker compose up --build` from the repository root. Open http://localhost:5173. API docs: http://localhost:8000/docs. Docker startup was not tested in the packaging environment.
+`docker compose up -d --build --wait` from the repository root starts PostgreSQL (`postgres:16.16-alpine`), the FastAPI backend (`127.0.0.1:8000`), and the Vite frontend (`127.0.0.1:5173`), waiting until all three container health checks pass (`docker compose down -v --remove-orphans` tears down). Open http://localhost:5173. API docs: http://localhost:8000/docs. See `docker/README.md` for port and environment overrides.
 
 ## Local development (two terminals)
 
@@ -28,7 +28,7 @@ Register Alice and Bob (passwords at least 10 characters). As Alice, open Studio
 
 ## Verification
 
-`python scripts/progress.py --write` and `python scripts/verify_locks.py` from root; `python -m unittest discover -s scripts/tests` from root; `uv sync --locked`, `uv build`, `uv run ruff check .`, `uv run ruff format --check .`, `uv run mypy app`, and `uv run pytest -q` from `backend`; `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm test`, `npx playwright install chromium`, and `npm run e2e` from `frontend`. See docs/verification/STARTER_PREVIEW.md for initial packaging notes.
+`python scripts/progress.py --write`, `python scripts/verify_locks.py`, and `python scripts/verify_compose.py` from root; `python -m unittest discover -s scripts/tests` from root; `uv sync --locked`, `uv build`, `uv run ruff check .`, `uv run ruff format --check .`, `uv run mypy app`, and `uv run pytest -q` from `backend`; `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm test`, `npx playwright install chromium`, and `npm run e2e` from `frontend`. See docs/verification/STARTER_PREVIEW.md for initial packaging notes.
 
 ## Scope
 

@@ -30,7 +30,7 @@
     "dependencies": [
       "M00-T02"
     ],
-    "status": "NOT_STARTED",
+    "status": "IMPLEMENTED",
     "priority": "MVP"
   },
   {

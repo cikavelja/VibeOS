@@ -26,6 +26,6 @@ async def get_health(request: Request) -> HealthResponse:
         raise HTTPException(status_code=503, detail="Database unavailable")
     try:
         await anyio.to_thread.run_sync(_probe_database, factory)
-    except (SQLAlchemyError, OSError, RuntimeError) as exc:
-        raise HTTPException(status_code=503, detail="Database unavailable") from exc
+    except (SQLAlchemyError, OSError, RuntimeError):
+        raise HTTPException(status_code=503, detail="Database unavailable") from None
     return HealthResponse(status="ok", service=APP_SERVICE_NAME, version=APP_VERSION)

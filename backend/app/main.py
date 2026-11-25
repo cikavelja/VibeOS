@@ -8,7 +8,7 @@ from typing import Any, TypeVar, cast
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy import CursorResult, select, update
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.api.health import router as health_router
@@ -17,6 +17,7 @@ from app.core.security import check_password, hash_password, token_digest
 from app.domain.schemas import Credentials, Definition, ShareRequest, StateRequest
 from app.infrastructure.database import (
     Base,
+    DatabaseUnavailableError,
     Installation,
     Project,
     SessionToken,
@@ -47,8 +48,15 @@ def create_app(database_url: str | None = None) -> FastAPI:
     bearer = HTTPBearer(auto_error=False)
 
     def db() -> Iterator[Session]:
-        with api.state.factory() as session:
-            yield session
+        try:
+            with api.state.factory() as session:
+                yield session
+        except HTTPException:
+            raise
+        except (SQLAlchemyError, OSError, DatabaseUnavailableError):
+            raise HTTPException(
+                status_code=503, detail="Database unavailable"
+            ) from None
 
     def current(
         auth: HTTPAuthorizationCredentials | None = Depends(bearer),
