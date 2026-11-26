@@ -190,7 +190,7 @@ export function DesktopShell({
     }
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);
-  }, [explicitStorage, state.scopeKey]);
+  }, [explicitStorage, currentState.scopeKey]);
 
   function applyChange(kind: 'theme' | 'wallpaper', rawValue: unknown) {
     const transition = transitionDesktopAppearance(currentState.appearance, {
