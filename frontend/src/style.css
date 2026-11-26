@@ -1,1 +1,505 @@
-*{box-sizing:border-box}body{margin:0;font:15px system-ui,sans-serif;color:#e8eefb;background:radial-gradient(ellipse at top left,#354878,#12192d 70%);min-height:100vh}header{display:flex;gap:16px;align-items:center;background:#10172a;padding:15px 24px}header span{color:#aab9d1;flex:1}header strong{font-size:20px}header .health-pill{flex:0 0 auto;font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid #475775}nav{display:flex;gap:8px;padding:16px 24px;flex-wrap:wrap}article,.login,.health-panel{background:#1c2942;border:1px solid #475775;border-radius:14px;padding:24px;margin:0 24px 24px;box-shadow:0 12px 40px #0003}.login,.health-panel{max-width:440px;margin:28px auto}article .health-panel{max-width:none;margin:0;box-shadow:none;border:none;padding:0}.health-header{display:flex;align-items:center;justify-content:space-between;gap:12px}.health-header h2{margin:0}.health-badge{font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid transparent}.health-healthy{background:#143d2b;color:#9ef0c0;border-color:#2d8a5e}.health-unhealthy{background:#4b1d26;color:#ffc2cd;border-color:#a63a50}.health-checking{background:#253653;color:#d6e4ff;border-color:#50617c}.health-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;padding:10px;background:#131f36;border-radius:8px}.health-meta dt{font-size:12px;color:#aab9d1}.health-meta dd{margin:2px 0 0;font-weight:600}button,input{font:inherit;border:1px solid #647697;border-radius:7px;padding:9px 12px}button{background:#304568;color:white;cursor:pointer;margin:3px}button:hover,.active{background:#4366a1}button:disabled{opacity:.45;cursor:not-allowed}input{background:#111d32;color:white;display:block;width:100%;margin:6px 0 12px}label{display:block}.studio{display:grid;grid-template-columns:1fr 1fr;gap:20px}.studio>div,.window{border:1px solid #50617c;border-radius:10px;padding:16px}.component{background:#253653;padding:12px;margin:8px 0;border-radius:8px}.message{padding:12px 24px;background:#263e63}.runtime{min-height:90px}.window{margin-top:16px}h2,h3{margin-top:0}@media(max-width:650px){.studio{grid-template-columns:1fr}.login,.health-panel{margin:24px}article{margin:0 12px 12px;padding:16px}}
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font: 15px system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.desktop-shell,
+.desktop-shell[data-theme='midnight'] {
+  color-scheme: dark;
+  --desktop-canvas-bg: #12192d;
+  --desktop-text: #e8eefb;
+  --desktop-muted: #aab9d1;
+  --desktop-topbar-bg: rgba(16, 23, 42, 0.9);
+  --desktop-topbar-border: #33425f;
+  --desktop-surface-bg: rgba(28, 41, 66, 0.94);
+  --desktop-surface-elevated: #253653;
+  --desktop-meta-bg: #131f36;
+  --desktop-input-bg: #111d32;
+  --desktop-border: #475775;
+  --desktop-control-border: #647697;
+  --desktop-button-bg: #304568;
+  --desktop-button-hover: #4366a1;
+  --desktop-button-text: #ffffff;
+  --desktop-focus-ring: #7cc4ff;
+  --desktop-message-bg: #263e63;
+  --desktop-message-text: #e8eefb;
+  --desktop-alert-bg: #4b1d26;
+  --desktop-alert-border: #d45b72;
+  --desktop-alert-text: #ffe0e6;
+  --desktop-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  --health-ok-bg: #143d2b;
+  --health-ok-text: #9ef0c0;
+  --health-ok-border: #2d8a5e;
+  --health-bad-bg: #4b1d26;
+  --health-bad-text: #ffc2cd;
+  --health-bad-border: #a63a50;
+  --health-wait-bg: #253653;
+  --health-wait-text: #d6e4ff;
+  --health-wait-border: #50617c;
+}
+
+.desktop-shell[data-theme='daylight'] {
+  color-scheme: light;
+  --desktop-canvas-bg: #e2e8f0;
+  --desktop-text: #0f172a;
+  --desktop-muted: #475569;
+  --desktop-topbar-bg: rgba(248, 250, 252, 0.94);
+  --desktop-topbar-border: #cbd5e1;
+  --desktop-surface-bg: rgba(255, 255, 255, 0.95);
+  --desktop-surface-elevated: #f1f5f9;
+  --desktop-meta-bg: #f8fafc;
+  --desktop-input-bg: #ffffff;
+  --desktop-border: #cbd5e1;
+  --desktop-control-border: #94a3b8;
+  --desktop-button-bg: #1d4ed8;
+  --desktop-button-hover: #1e40af;
+  --desktop-button-text: #ffffff;
+  --desktop-focus-ring: #1d4ed8;
+  --desktop-message-bg: #dbeafe;
+  --desktop-message-text: #1e3a8a;
+  --desktop-alert-bg: #fef2f2;
+  --desktop-alert-border: #dc2626;
+  --desktop-alert-text: #7f1d1d;
+  --desktop-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
+  --health-ok-bg: #dcfce7;
+  --health-ok-text: #14532d;
+  --health-ok-border: #16a34a;
+  --health-bad-bg: #fee2e2;
+  --health-bad-text: #7f1d1d;
+  --health-bad-border: #dc2626;
+  --health-wait-bg: #e0e7ff;
+  --health-wait-text: #1e3a8a;
+  --health-wait-border: #6366f1;
+}
+
+.desktop-shell[data-theme='high-contrast'] {
+  color-scheme: dark;
+  --desktop-canvas-bg: #000000;
+  --desktop-text: #ffffff;
+  --desktop-muted: #fde047;
+  --desktop-topbar-bg: #000000;
+  --desktop-topbar-border: #ffffff;
+  --desktop-surface-bg: #050505;
+  --desktop-surface-elevated: #121212;
+  --desktop-meta-bg: #0a0a0a;
+  --desktop-input-bg: #000000;
+  --desktop-border: #ffffff;
+  --desktop-control-border: #ffffff;
+  --desktop-button-bg: #000000;
+  --desktop-button-hover: #1e293b;
+  --desktop-button-text: #fde047;
+  --desktop-focus-ring: #38bdf8;
+  --desktop-message-bg: #0f172a;
+  --desktop-message-text: #ffffff;
+  --desktop-alert-bg: #2b0008;
+  --desktop-alert-border: #ff8fa3;
+  --desktop-alert-text: #ffffff;
+  --desktop-shadow: none;
+  --health-ok-bg: #002b18;
+  --health-ok-text: #86efac;
+  --health-ok-border: #86efac;
+  --health-bad-bg: #3b000b;
+  --health-bad-text: #fecdd3;
+  --health-bad-border: #fecdd3;
+  --health-wait-bg: #0c1f3f;
+  --health-wait-text: #bae6fd;
+  --health-wait-border: #bae6fd;
+}
+
+.desktop-shell,
+.desktop-shell[data-wallpaper='aurora'] {
+  --desktop-wallpaper-image: radial-gradient(ellipse at 18% 15%, #354878 0%, transparent 58%),
+    radial-gradient(ellipse at 82% 80%, #1d4e5f 0%, transparent 55%),
+    linear-gradient(160deg, #162038 0%, #0d1324 100%);
+  --desktop-wallpaper-size: cover;
+}
+
+.desktop-shell[data-theme='daylight'][data-wallpaper='aurora'] {
+  --desktop-wallpaper-image: radial-gradient(ellipse at 18% 15%, #bfdbfe 0%, transparent 58%),
+    radial-gradient(ellipse at 82% 80%, #99f6e4 0%, transparent 55%),
+    linear-gradient(160deg, #e0f2fe 0%, #f1f5f9 100%);
+}
+
+.desktop-shell[data-theme='high-contrast'][data-wallpaper='aurora'] {
+  --desktop-wallpaper-image: radial-gradient(ellipse at 18% 15%, #172554 0%, transparent 52%),
+    linear-gradient(160deg, #050814 0%, #000000 100%);
+}
+
+.desktop-shell[data-wallpaper='horizon'] {
+  --desktop-wallpaper-image: radial-gradient(circle at 76% 20%, #7c2d48 0%, transparent 52%),
+    radial-gradient(ellipse at 20% 84%, #312e81 0%, transparent 56%),
+    linear-gradient(180deg, #1f1633 0%, #111827 100%);
+  --desktop-wallpaper-size: cover;
+}
+
+.desktop-shell[data-theme='daylight'][data-wallpaper='horizon'] {
+  --desktop-wallpaper-image: radial-gradient(circle at 76% 20%, #fecdd3 0%, transparent 52%),
+    radial-gradient(ellipse at 20% 84%, #ddd6fe 0%, transparent 56%),
+    linear-gradient(180deg, #fff1f2 0%, #eff6ff 100%);
+}
+
+.desktop-shell[data-theme='high-contrast'][data-wallpaper='horizon'] {
+  --desktop-wallpaper-image: radial-gradient(circle at 76% 20%, #3f0d24 0%, transparent 48%),
+    linear-gradient(180deg, #0d0514 0%, #000000 100%);
+}
+
+.desktop-shell[data-wallpaper='blueprint'] {
+  --desktop-wallpaper-image: linear-gradient(rgba(125, 211, 252, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 50% 35%, #1e3a5f 0%, #0b1526 82%);
+  --desktop-wallpaper-size: 32px 32px, 32px 32px, 100% 100%;
+}
+
+.desktop-shell[data-theme='daylight'][data-wallpaper='blueprint'] {
+  --desktop-wallpaper-image: linear-gradient(rgba(30, 64, 175, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 64, 175, 0.09) 1px, transparent 1px),
+    radial-gradient(circle at 50% 35%, #dbeafe 0%, #e2e8f0 82%);
+  --desktop-wallpaper-size: 32px 32px, 32px 32px, 100% 100%;
+}
+
+.desktop-shell[data-theme='high-contrast'][data-wallpaper='blueprint'] {
+  --desktop-wallpaper-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(180deg, #030712 0%, #000000 100%);
+  --desktop-wallpaper-size: 32px 32px, 32px 32px, 100% 100%;
+}
+
+.desktop-shell[data-wallpaper='monolith'] {
+  --desktop-wallpaper-image: linear-gradient(180deg, #161f33 0%, #0d1321 100%);
+  --desktop-wallpaper-size: cover;
+}
+
+.desktop-shell[data-theme='daylight'][data-wallpaper='monolith'] {
+  --desktop-wallpaper-image: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.desktop-shell[data-theme='high-contrast'][data-wallpaper='monolith'] {
+  --desktop-wallpaper-image: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+}
+
+.desktop-shell {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--desktop-text);
+  background-color: var(--desktop-canvas-bg);
+  background-image: var(--desktop-wallpaper-image);
+  background-size: var(--desktop-wallpaper-size);
+  background-position: center;
+}
+
+.desktop-topbar {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--desktop-topbar-bg);
+  border-bottom: 1px solid var(--desktop-topbar-border);
+  padding: 12px 24px;
+  backdrop-filter: blur(10px);
+}
+
+.desktop-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.desktop-brand strong {
+  font-size: 20px;
+}
+
+.desktop-subtitle {
+  color: var(--desktop-muted);
+}
+
+.desktop-appearance-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.desktop-control-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.desktop-control-field label {
+  display: inline;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--desktop-muted);
+}
+
+.desktop-control-field select {
+  font: inherit;
+  font-size: 14px;
+  background: var(--desktop-input-bg);
+  color: var(--desktop-text);
+  border: 1px solid var(--desktop-control-border);
+  border-radius: 7px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.desktop-status-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.desktop-topbar .health-pill {
+  flex: 0 0 auto;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--desktop-border);
+}
+
+.desktop-alert {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 24px;
+  background: var(--desktop-alert-bg);
+  border-bottom: 1px solid var(--desktop-alert-border);
+  color: var(--desktop-alert-text);
+}
+
+.desktop-alert-dismiss {
+  padding: 5px 10px;
+  font-size: 13px;
+  margin: 0;
+}
+
+.desktop-workspace {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  padding: 16px 24px;
+  flex-wrap: wrap;
+}
+
+article,
+.login,
+.health-panel {
+  background: var(--desktop-surface-bg);
+  border: 1px solid var(--desktop-border);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 0 24px 24px;
+  box-shadow: var(--desktop-shadow);
+}
+
+.login,
+.health-panel {
+  max-width: 440px;
+  margin: 28px auto;
+}
+
+article .health-panel {
+  max-width: none;
+  margin: 0;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+}
+
+.health-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.health-header h2 {
+  margin: 0;
+}
+
+.health-badge {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.health-healthy {
+  background: var(--health-ok-bg);
+  color: var(--health-ok-text);
+  border-color: var(--health-ok-border);
+}
+
+.health-unhealthy {
+  background: var(--health-bad-bg);
+  color: var(--health-bad-text);
+  border-color: var(--health-bad-border);
+}
+
+.health-checking {
+  background: var(--health-wait-bg);
+  color: var(--health-wait-text);
+  border-color: var(--health-wait-border);
+}
+
+.health-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 12px 0;
+  padding: 10px;
+  background: var(--desktop-meta-bg);
+  border: 1px solid var(--desktop-border);
+  border-radius: 8px;
+}
+
+.health-meta dt {
+  font-size: 12px;
+  color: var(--desktop-muted);
+}
+
+.health-meta dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+}
+
+button,
+input {
+  font: inherit;
+  border: 1px solid var(--desktop-control-border);
+  border-radius: 7px;
+  padding: 9px 12px;
+}
+
+button {
+  background: var(--desktop-button-bg);
+  color: var(--desktop-button-text);
+  cursor: pointer;
+  margin: 3px;
+}
+
+button:hover,
+button.active {
+  background: var(--desktop-button-hover);
+}
+
+button.active {
+  border-color: var(--desktop-focus-ring);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--desktop-focus-ring);
+  outline-offset: 2px;
+}
+
+input {
+  background: var(--desktop-input-bg);
+  color: var(--desktop-text);
+  display: block;
+  width: 100%;
+  margin: 6px 0 12px;
+}
+
+label {
+  display: block;
+}
+
+.studio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.studio > div,
+.window {
+  border: 1px solid var(--desktop-border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.component {
+  background: var(--desktop-surface-elevated);
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+}
+
+.message {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 12px 24px;
+  background: var(--desktop-message-bg);
+  color: var(--desktop-message-text);
+  border-bottom: 1px solid var(--desktop-border);
+}
+
+.runtime {
+  min-height: 90px;
+}
+
+.window {
+  margin-top: 16px;
+}
+
+h2,
+h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 650px) {
+  .desktop-topbar {
+    padding: 12px 16px;
+  }
+
+  .studio {
+    grid-template-columns: 1fr;
+  }
+
+  .login,
+  .health-panel {
+    margin: 24px 16px;
+  }
+
+  article {
+    margin: 0 12px 12px;
+    padding: 16px;
+  }
+}
